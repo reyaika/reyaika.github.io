@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>What Barangay names reveal about the Filipino soul</title>
+
+
+    <link rel="icon" type="image/x-icon"
+        href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svgs/mapbox.svg">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://cdn.jsdelivr.net/npm/mapbox-gl-globe-minimap@1.2.0/dist/bundle.js"></script>
+    <script src="https://unpkg.com/scrollama"></script>
+    
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <style>
+        
+        
+        body {
+            margin: 0;
+            font-size: 17px;
+            font-family: 'Inter', sans-serif;
+            text-rendering: optimizeLegibility;
+            color: #333333;
+        }
+
+        .content {
+            max-width: 640px;
+            margin: auto;
+            margin-top: 20px
+        }
+
+        .byline {
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        .byline a {
+            color: white;
+            text-decoration: none; /* optional: remove underline */
+        }
+
+        .byline a:hover {
+            text-decoration: underline; /* optional: subtle hover effect */
+        }
+
+
+        .header {
+            /* padding: 0 0 2.5em 0; */
+            /* position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); */
+            color: white;
+            padding: 1rem 2rem;
+            background-color: rgba(0, 0, 0, 0.5); /* translucent black */
+            border-radius: 8px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        a {
+            color: #f05349;
+        }
+
+        #scrolly-container {
+            position: relative;
+            height: 200vh;
+            width: 100%;
+            z-index: 1;
+            margin: 0 auto;
+            padding-top: 1rem;
+        }
+
+        #map {
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            position: sticky;
+            z-index: 0;
+            transition: transform 0.1s ease, opacity 0.1s ease;
+            will-change: transform, opacity;
+        }
+
+        #map .mapboxgl-canvas {
+            pointer-events: none;
+        }
+
+        #map.tooltip-enabled .mapboxgl-canvas {
+            pointer-events: auto;
+        }
+
+
+        #story {
+            position: relative;
+            width: 100%;
+            z-index: 5;
+        }
+
+        .footer {
+            background: #f4f4f4;
+            text-align: left;
+            font-size: 0.8em;
+            margin-top: 10px;
+            padding: 1em 0;
+            /* max-width: 640px; */
+            /* margin: auto; */
+            /* margin-top: 20px */
+        }
+
+        .credits {
+            /* background: #f4f4f4; */
+            text-align: left;
+            font-size: 0.8em;
+            margin-top: 10px;
+            padding-bottom: 3em
+        }
+
+        figure {
+            margin: 0;
+            padding-bottom: 1.2em;
+        }
+
+        figcaption {
+            font-size: 0.8em;
+            text-align: center;
+            margin-top: 0.5em;
+            color: #666;
+        }
+
+        h1 {
+            font-family: 'Lora', Georgia, serif;
+            font-weight: bold;
+            font-size: 3em;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-family: 'Lora', Georgia, serif;
+            font-weight: bold;
+            font-size: 1.5em;
+            line-height: 1.1;
+            color: #333333;
+        }
+
+        h3 {
+            font-family: 'Lora', Georgia, serif;
+            font-weight: bold;
+            font-size: 1.17em;
+            line-height: 1.1;
+            color: #333333;
+        }
+
+        h4 {
+            font-family: 'Lora', Georgia, serif;
+            font-weight: bold;
+            font-size: 1em;
+            line-height: 1.1;
+            color: #333333;
+        }
+
+        .subhead {
+            font-family: 'Inter', sans-serif;
+        }
+
+        iframe,
+        img,
+        video {
+            max-width: 100%;
+        }
+
+        p {
+            line-height: 1.6;
+            margin: 0;
+            padding-bottom: 1.2em;
+        }
+
+        ul {
+            margin: 0;
+            padding-bottom: 1em;
+            line-height: 1.6;
+        }
+
+        iframe {
+            padding-bottom: 1.2em;
+        }
+
+        .full-width figure {
+            text-align: center;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            background: #fff880;
+        }
+
+        #features {
+            padding-top: 10vh;
+            padding-bottom: 10vh;
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
+
+        .centered {
+            width: 50vw;
+            margin: 0 auto;
+        }
+
+        .lefty {
+            width: 33vw;
+            margin-left: 5vw;
+        }
+
+        .righty {
+            width: 33vw;
+            margin-left: 62vw;
+        }
+
+        .fully {
+            width: 100%;
+            margin: auto;
+        }
+
+        .light {
+            color: #444;
+            background-color: #fafafa;
+        }
+
+        .dark {
+            color: #fafafa;
+            background-color: #444;
+        }
+
+        .step {
+            padding-bottom: 50vh;
+            /* margin-bottom: 10vh; */
+            opacity: 0.25;
+            transition: opacity 0.3s ease;
+        }
+
+        .step.active {
+            opacity: 0.9;
+            z-index: 10;
+        }
+
+        .step div {
+            color: #333333;
+            padding: 25px 50px;
+            line-height: 25px;
+            font-size: 15px;
+            opacity: 0.8;
+            background-color: #ffffff;
+            transition: filter 0.3s ease, opacity 0.3s ease;
+            z-index: 10;
+            filter: none;
+        }
+
+        .step img {
+            width: 100%;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            color: white;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+
+        #legend {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            font-size: 11px;
+            border-radius: 2px;
+            z-index: 5;
+            display: none;
+            color: #333333; ;
+        }
+
+        .legend-color {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-right: 6px;
+            vertical-align: middle;
+            border-radius: 1px;
+        }
+
+        .legend-color.people { background-color: #9eb58c; }
+        .legend-color.plants { background-color: #788c89; }
+        .legend-color.admin { background-color: #bfbfbf; }
+        .legend-color.places { background-color: #7896a1; }
+        .legend-color.religious { background-color:#3a5468; }
+        .legend-color.descriptive { background-color: #a58c5f; }
+        .legend-color.other { background-color: #ddd6cc; }
+
+
+
+        @media (max-width: 640px) {
+
+            .centered,
+            .lefty,
+            .righty,
+            .fully {
+                width: 90vw;
+                margin: 0 auto;
+            }
+
+            body {
+                font-size: 18px;
+            }
+
+            .content {
+                padding-left: 0.5em;
+                padding-right: 0.5em;
+            }
+        }
+
+        /* Fix issue on mobile browser where scroll breaks  */
+        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan,
+        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
+            touch-action: unset;
+        }
+    
+    /* Banner header */
+
+        .with-image-bg,
+        .with-video-bg {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 2em;
+            z-index: 1;
+
+            /* Center everything inside */
+            min-height: 70svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-top: 10vh;
+            /* padding-bottom: 10vh; */
+            /* align-items: center; */
+
+            /* White text with a shadow */
+            color: white;
+            /* text-shadow: 0px 0px 30px black,
+                0px 0px 10px rgba(0, 0, 0, 0.5); */
+        }
+
+        .with-image-bg {
+            background-image: url('manila.jpg');
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .video-background video {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    
+    /* Highlight */
+        
+        .highlight-people {
+            background-color: #9eb58c;
+            color: white;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .highlight-plants {
+            background-color: #788c89;
+            color: white;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .highlight-admin {
+            background-color: #bfbfbf;
+            color: #333333;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .highlight-places {
+            background-color: #7896a1;
+            color: white;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .highlight-religious {
+            background-color: #3a5468;
+            color: white;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .highlight-descriptive {
+            background-color: #a58c5f;
+            color: #333333;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .highlight-other {
+            background-color: #ddd6cc;
+            color: #333333;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+    </style>
+
+    <link href="scrolly-styles.css" rel="stylesheet">
+    <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="map"></div>
+    <div id="story"></div>
+    <div id="legend" style="display: none;">
+        <p><strong>Legend</strong></p>
+        <span class="legend-color admin"></span>Admin Boundaries<br>
+        <span class="legend-color plants"></span>Plants & Animals<br>   
+        <span class="legend-color people"></span>People<br>
+        <span class="legend-color places"></span>Places & Geography<br>
+        <span class="legend-color religious"></span>Religious<br>
+        <span class="legend-color descriptive"></span>Descriptive<br> 
+        <span class="legend-color other"></span>Other
+    </div>
+
+
+    <script src="./config.js"></script>
+    <script>
+        var initLoad = true;
+        var layerTypes = {
+            'fill': ['fill-opacity'],
+            'line': ['line-opacity'],
+            'circle': ['circle-opacity', 'circle-stroke-opacity'],
+            'symbol': ['icon-opacity', 'text-opacity'],
+            'raster': ['raster-opacity'],
+            'fill-extrusion': ['fill-extrusion-opacity'],
+            'heatmap': ['heatmap-opacity']
+        }
+
+        var alignments = {
+            'left': 'lefty',
+            'center': 'centered',
+            'right': 'righty',
+            'full': 'fully'
+        }
+
+        function getLayerPaintType(layer) {
+            var layerType = map.getLayer(layer).type;
+            // if (!mapLayer) return null;
+            return layerTypes[layerType];
+        }
+
+        function setLayerOpacity(layer) {
+            if (!map.getLayer(layer.layer)) {
+                console.warn("Layer not found:", layer.layer);
+                return;
+            }
+
+            console.log(`Setting opacity for: ${layer.layer}`, layer);
+
+            var paintProps = getLayerPaintType(layer.layer);
+            paintProps.forEach(function (prop) {
+                var options = {};
+                if (layer.duration) {
+                    var transitionProp = prop + "-transition";
+                    options = { "duration": layer.duration };
+                    map.setPaintProperty(layer.layer, transitionProp, options);
+                }
+                map.setPaintProperty(layer.layer, prop, layer.opacity, options);
+            });
+        }
+
+        var story = document.getElementById('story');
+        var features = document.createElement('div');
+        features.setAttribute('id', 'features');
+
+        var header = document.createElement('div');
+
+        if (config.title) {
+            var titleText = document.createElement('h1');
+            titleText.innerText = config.title;
+            header.appendChild(titleText);
+        }
+
+        if (config.subtitle) {
+            var subtitleText = document.createElement('h2');
+            subtitleText.innerText = config.subtitle;
+            header.appendChild(subtitleText);
+        }
+
+        if (config.byline) {
+            var bylineText = document.createElement('p');
+            bylineText.innerText = config.byline;
+            header.appendChild(bylineText);
+        }
+
+        if (header.innerText.length > 0) {
+            header.classList.add(config.theme);
+            header.setAttribute('id', 'header');
+            story.appendChild(header);
+        }
+
+        config.chapters.forEach((record, idx) => {
+            var container = document.createElement('div');
+            var chapter = document.createElement('div');
+
+            if (record.title) {
+                var title = document.createElement('h3');
+                title.innerText = record.title;
+                chapter.appendChild(title);
+            }
+
+            if (record.image) {
+                var image = new Image();
+                image.src = record.image;
+                chapter.appendChild(image);
+            }
+
+            if (record.description) {
+                var story = document.createElement('p');
+                story.innerHTML = record.description;
+                chapter.appendChild(story);
+            }
+
+            container.setAttribute('id', record.id);
+            container.classList.add('step');
+            if (idx === 0) {
+                container.classList.add('active');
+            }
+
+            chapter.classList.add(config.theme);
+            container.appendChild(chapter);
+            container.classList.add(alignments[record.alignment] || 'centered');
+            if (record.hidden) {
+                container.classList.add('hidden');
+            }
+            features.appendChild(container);
+        });
+
+        story.appendChild(features);
+
+        var footer = document.createElement('div');
+
+        if (config.footer) {
+            var footerText = document.createElement('p');
+            footerText.innerHTML = config.footer;
+            footer.appendChild(footerText);
+        }
+
+        if (footer.innerText.length > 0) {
+            footer.classList.add(config.theme);
+            footer.setAttribute('id', 'footer');
+            story.appendChild(footer);
+        }
+
+
+        mapboxgl.accessToken = config.accessToken;
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: config.style,
+            center: config.chapters[0].location.center,
+            zoom: config.chapters[0].location.zoom,
+            bearing: config.chapters[0].location.bearing,
+            pitch: config.chapters[0].location.pitch,
+            interactive: true,
+            projection: config.projection
+        });
+
+        // Create a inset map if enabled in config.js
+        if (config.inset) {
+            map.addControl(
+                new GlobeMinimap({ ...config.insetOptions }),
+                config.insetPosition
+            );
+        }
+
+        if (config.showMarkers) {
+            var marker = new mapboxgl.Marker({ color: config.markerColor });
+            marker.setLngLat(config.chapters[0].location.center).addTo(map);
+        }
+
+        // instantiate the scrollama
+        var scroller = scrollama();
+
+
+        map.on("load", function () {
+            if (config.use3dTerrain) {
+                map.addSource('mapbox-dem', {
+                    'type': 'raster-dem',
+                    'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+                    'tileSize': 512,
+                    'maxzoom': 14
+                });
+                // add the DEM source as a terrain layer with exaggerated height
+                map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+
+                // add a sky layer that will show when the map is highly pitched
+                map.addLayer({
+                    'id': 'sky',
+                    'type': 'sky',
+                    'paint': {
+                        'sky-type': 'atmosphere',
+                        'sky-atmosphere-sun': [0.0, 0.0],
+                        'sky-atmosphere-sun-intensity': 15
+                    }
+                
+                });
+            }
+
+            map.setPaintProperty('city-filter', 'line-opacity', 0);
+            map.setPaintProperty('barangay-outlines', 'line-opacity', 0);
+            map.setPaintProperty('Filipino Heroes', 'fill-opacity', 0);
+            map.setPaintProperty('Filipino Politicians', 'fill-opacity', 0);
+            map.setPaintProperty('Other Persons', 'fill-opacity', 0);
+            map.setPaintProperty('Plants', 'fill-opacity', 0);
+            map.setPaintProperty('Animals', 'fill-opacity', 0);
+            map.setPaintProperty('Admin Boundaries', 'fill-opacity', 0);
+            map.setPaintProperty('Manila', 'fill-opacity', 0);
+            map.setPaintProperty('Places and Geography', 'fill-opacity', 0);
+            map.setPaintProperty('Religious', 'fill-opacity', 0);
+            map.setPaintProperty('Descriptive', 'fill-opacity', 0);
+            map.setPaintProperty('Others', 'fill-opacity', 0);
+
+            map.getStyle().layers.forEach(layer => {
+            console.log(layer.id, layer.type);
+            });
+
+
+            const popup = new mapboxgl.Popup({
+                closeButton: false,
+                closeOnClick: false
+            });
+
+            const tooltipLayers = ['Admin Boundaries', 'Descriptive', 'Filipino Heroes', 'Filipino Politicians', 'Other Persons', 'Places and Geography', 'Plants', 'Animals', 'Religious', 'Manila', 'Others'];
+
+
+
+            tooltipLayers.forEach(layerId => {
+                console.log('OK callback registered for', layerId);
+
+                map.on('mousemove', layerId, (e) => {
+                    console.log(`Hovering on "${layerId}"`, e.features);
+                    if (!e.features || !e.features.length) {
+                        console.log('No features found at cursor for this layer');
+                        return;
+                    }
+                    console.log('Features:', e.features);
+                    console.log('Properties:', e.features[0].properties);
+
+                    document.getElementById('map').classList.add('tooltip-enabled');
+                    map.getCanvas().style.cursor = 'pointer';
+
+                    const properties = e.features[0].properties;
+                    const barangay = properties['factchecked_barangay_clean'];
+                    const city = properties['factchecked_city/municipality'];
+                    const province = properties['factchecked_province'];
+                    const category = properties['factchecked_factchecked_category'];
+
+
+                    popup.setLngLat(e.lngLat)
+                        .setHTML(`
+                            <strong>${barangay || 'Unnamed'}</strong><br>
+                            ${city || 'Unknown City'}, ${province || 'Unknown Province'}<br>
+                            <em>${category || 'Uncategorized'}</em>
+                        `)
+                        .addTo(map);
+
+
+                });
+                    
+
+                map.on('mouseleave', layerId, () => {
+                    document.getElementById('map').classList.remove('tooltip-enabled');
+                    map.getCanvas().style.cursor = '';
+                    popup.remove();
+                });
+
+                    
+            });
+
+
+            
+        });
+                
+
+            // setup the instance, pass callback functions
+
+            scroller
+                .setup({
+                    step: '.step',
+                    offset: 0.5,
+                    progress: true
+                })
+                .onStepEnter(async response => {
+                    const { element, index } = response;
+
+                    var current_chapter = config.chapters.findIndex(chap => chap.id === response.element.id);
+                    var chapter = config.chapters[current_chapter];
+
+                    response.element.classList.add('active');
+                    map[chapter.mapAnimation || 'flyTo'](chapter.location);
+
+                    map.once('moveend', () => {
+                        const legend = document.getElementById('legend');
+                        console.log("Step entered:", response.element.id);
+                        console.log("showLegend:", chapter?.showLegend);
+
+                        if (legend) {
+                            if (chapter?.showLegend) {
+                                legend.style.display = 'block';
+                                legend.style.opacity = 1;
+                            } else {
+                                legend.style.display = 'none';
+                                legend.style.opacity = 0;
+                            }
+                        }
+                    });
+
+
+                    if (config.showMarkers) {
+                        marker.setLngLat(chapter.location.center);
+                    }
+                    if (chapter.onChapterEnter.length > 0) {
+                        chapter.onChapterEnter.forEach(setLayerOpacity);
+                    }
+                    if (chapter.callback) {
+                        window[chapter.callback]();
+                    }
+                    if (chapter.rotateAnimation) {
+                        map.once('moveend', () => {
+                            const rotateNumber = map.getBearing();
+                            map.rotateTo(rotateNumber + 180, {
+                                duration: 30000, easing: function (t) {
+                                    return t;
+                                }
+                            });
+                        });
+                    }
+                    if (config.auto) {
+                        var next_chapter = (current_chapter + 1) % config.chapters.length;
+                        map.once('moveend', () => {
+                            document.querySelectorAll('[data-scrollama-index="' + next_chapter.toString() + '"]')[0].scrollIntoView();
+                        });
+                    }
+
+                    const legend = document.getElementById('legend');
+
+                    console.log("Step entered:", response.element.id);
+                    console.log("Matched chapter:", chapter);
+                    console.log("showLegend:", chapter?.showLegend)
+
+
+                })
+
+
+                .onStepExit(response => {
+                    var chapter = config.chapters.find(chap => chap.id === response.element.id);
+                    response.element.classList.remove('active');
+                    if (chapter.onChapterExit.length > 0) {
+                        chapter.onChapterExit.forEach(setLayerOpacity);
+                    }
+
+                    // Hide legend immediately if last step exited
+                    const legend = document.getElementById('legend');
+                    const steps = document.querySelectorAll('.step');
+                    const lastStep = steps[steps.length - 1];
+                    if (response.element === lastStep) {
+                        legend.style.display = 'none';
+                        legend.style.opacity = 0;
+                    }
+
+                });
+
+
+            if (config.auto) {
+                document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
+            }
+            window.addEventListener('scroll', () => {
+                const map = document.getElementById('map');
+                const steps = document.querySelectorAll('.step');
+                const lastStep = steps[steps.length - 1];
+                const lastStepRect = lastStep.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                
+                
+                // How far is the last step's bottom from the viewport top?
+                const distance = Math.min(0, lastStepRect.bottom - viewportHeight);
+
+                // Calculate how far to move the map up — max its own height
+                const mapHeight = map.offsetHeight;
+
+                // We'll translate map up from 0 to -mapHeight (out of view)
+                let translateY = 0;
+                if (lastStepRect.bottom < viewportHeight) {
+                    // negative value means it's moving up
+                    translateY = Math.max(-mapHeight, distance);
+                }
+
+                map.style.transform = `translateY(${translateY}px)`;
+
+                // Optionally fade out while moving up
+                const opacity = 1 + translateY / mapHeight; // from 1 to 0 as translateY goes -mapHeight
+                map.style.opacity = opacity < 0 ? 0 : opacity;
+ 
+                const lastStepBottom = lastStep.getBoundingClientRect().bottom;
+                if (lastStepBottom < 0) {
+                    legend.style.display = 'none';
+                    legend.style.opacity = 0;
+                }
+            });
+
+        
+        console.log('Legend element at load:', document.getElementById('legend'));
+        console.log('Config chapters:', config.chapters);
+
+        
+
+    </script>
+
+
+
+    <!-- Page content -->
+
+    <div class="header with-image-bg">
+
+        <div class="content">
+            <div class="header-text">
+                <h1>What Barangay names reveal about the Filipino soul</h1>
+                <p class="subhead">From saints to plants, from heroes to ancient words — barangay names offer a glimpse into the Philippines’ diverse history and culture</p>
+            </div>
+        </div>
+        <div class="content">
+            25 July 2025
+        <div class="byline">
+        <p>By <a href="https://muckrack.com/aikarey" target="_blank">Aika Rey</a></p>
+        <!-- <div class="scroll-down">↓</div> -->
+        </div>
+        </div>
+    </div>
+    
+    <div class="content">
+        <p>In the Philippines, place names are not just geographic markers. They are cultural artifacts – fragments of memory that map out history, belief, and the shape of everyday life.</p>
+        
+        <p>The <i>barangay</i> — the Philippines' smallest unit of government — often carries more than a bureaucratic label. Its name can hint at what the land once looked like, who once lived there, or what people hoped for.</p>
+
+
+        <p>This story examines nearly 4,000 barangays across Mega Manila — a vast, urbanized region where one in four Filipinos now lives — to explore how these names reflect how Filipinos shape identity, meaning, and geography.</p>
+
+        <h2>It started with a boat</h2>
+
+        <p>The word "barangay" traces its roots to <i>balangay</i> — the ancient wooden boats that once carried Malay settlers from Borneo and beyond across the seas to the Philippine archipelago.</p>
+        
+        <p>Each balangay carried extended families, their leaders (<i>datus</i>), and sometimes slaves. Over time, the term shifted from describing the vessel to the community that disembarked from it.</p>
+
+        <p>In precolonial times, barangays were small, autonomous settlements along rivers or coasts, often consisting of 30 to 100 families. These were not part of a nation but scattered, independent villages tied together by water and kinship.</p>
+        
+        <p>When the Spaniards came, the colonizers preserved the barangay structure for administrative ease. Americans later renamed them barrios, until dictator Ferdinand Marcos revived the term in the 1970s to strengthen centralized control.</p>
+
+        <p>Today, there are more than 42,000 barangays across the Philippines. One in ten is in Mega Manila, the metropolitan sprawl that includes the capital region and the nearby provinces of Bulacan, Cavite, Laguna, and Rizal.</p>
+
+        <iframe src='https://flo.uri.sh/visualisation/24373307/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no' style='width:100%;height:600px;' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe>
+
+        <p>The capital itself, Manila, holds the distinction of having nearly 900 barangays — the highest in the country. Uniquely, every barangay in Manila is named with a number: Barangay 1, Barangay 2, and so on — a legacy of urban planning, not storytelling.</p>
+
+        <p>Cavite, just south of Manila, follows with 829 barangays — a province closely associated with Filipino revolutionary history.</p>
+
+        <h2>Names worn by history</h2>
+        
+        <p>Colonial rule shaped not only governance but also naming. Like many former Spanish colonies, the old <i>pueblo</i> (town center) was organized around four points: a church, a municipal hall, a market, and a central plaza. Many barangays grew around these.</p>
+
+        <p>The second most common name after “Barangay” is Poblacion — from the Spanish for “population,” now understood to mean the town proper in the Philippines. At least 67 barangays in Mega Manila carry this name or a numbered variation.</p>
+
+        <p>Then come the saints:</p>
+        <ul>
+            <li>25 barangays named after San Jose (St. Joseph), the husband of Mary</li>
+            <li>24 for San Roque (St. Roch), the patron saint of dogs, the sick, and invalids</li>
+            <li>23 for San Juan, most likely St. John the Baptist</li>
+            <li>22 after Santo Niño, or the Holy Child</li>
+            <li>Others in the top 10: San Isidro, San Miguel, San Antonio, San Rafael, and Santa Cruz — all Catholic references, spread across the urban map.</li>
+        </ul> 
+
+        <iframe src='https://flo.uri.sh/visualisation/24314840/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no' style='width:100%;height:600px;' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe><div style='width:100%!;margin-top:4px!important;text-align:right!important;'></div>
+
+        <p>Given the Philippines' status as the world's third-largest Catholic nation, this saturation is no surprise. Yet the density of saintly names reveals how deeply religion has shaped public life — not just as faith, but as geography.</p>
+
+        <p>These names reflect the influence of the clergy during the Spanish colonial era and the long-standing practice of invoking saints as protectors of the community.</p>
+
+        <p>Though these names are remnants of colonial rule, they show how faith continues to shape public identity — even long after the priests lost political power.</p>
+    
+        <h2>What names mean</h2>
+
+        <p>Despite a sea of utilitarian names, a closer look reveals a textured landscape.</p>
+
+        <p>Another major source of naming draws from the land itself.</p>
+
+        <p>Many barangays are named after physical landmarks: Wawa (river mouth), Longos (land jutting into water), Burol (hill), Pulo (island).</p>
+        
+        <p>Ten barangays are named Bukal or Bucal, both meaning “spring.” Four are called Pansol, which also means spring. In Laguna, Bucal and Pansol are popular tourist destinations known for their natural hot springs.</p>
+
+        <p>Names like Tabing Ilog (riverside) and Tabing Dagat (seaside) are straightforward.  Tabing Ilog in Tanay, Rizal, is bisected by the Tanay River. Tabing Dagat in Bacoor, Cavite, sits along Bacoor Bay. These names often acted like oral signage — directing people to water, to safety, to sustenance.</p>
+
+        <img src="arkong-bato.jpg" alt="The 1910 Arkong Bato stone arch separating Valenzuela and Malabon cities">
+        <figcaption>STONE ARCH. This image shows an old photo of the stone arch alongside its recent facelift at Arkong Bato Park. Klienneeco/Wikimedia Commons</figcaption>
+
+        <br>
+
+        <p>In Valenzuela City, Arkong Bato (Stone Arch) is named after a 1910 stone archway built during American rule. Once marking the boundary between Rizal and Bulacan provinces, it still stands — now separating Valenzuela and Malabon, two cities in the capital region.</p>
+    
+        <p>Other names speak to livelihood. In Bacoor, Cavite, villages like Zapote (sapodilla), Sineguelasan (Spanish plum), Talaba (oyster), Niog (coconut), Mabolo (velvet apple), and Atisan (sugar apple orchard) reflect this.</p>
+
+        <p>Elsewhere, barangays carry names of trees: Bangkal (Leichhardt tree), Calumpang (wild almond), Camachile (Manila tamarind), Catmon, Acacia, and Yakal — hinting at local ecosystems or agricultural roots.</p>
+
+        <p>And of course, while it is not as common as saints, more than a hundred villages are named after people – local heroes and politicians included.</p>
+
+        <p>While saints dominate the map, over a hundred barangays are named after people — from local heroes to national figures: Eight villages carry the name of the national hero Jose Rizal — as Rizal, J. Rizal, or Jose Rizal. His brother Paciano, himself a local hero from Laguna, has two barangays named after him.</p>
+
+        <p>Former presidents — Magsaysay, Quirino, Jose Laurel, Roxas — also appear in barangay names, even though none of them came from those areas.</p>
+
+        <h2>When names break the mold</h2>
+
+        <p>Some names sit outside the expected categories — neither religious nor geographic, not historical or ecological. They reflect something more abstract.</p>
+
+        <p>A barangay like Pag-asa (Hope) doesn't describe a terrain — it describes a feeling. Kalayaan (Freedom) evokes a principle, not a place.</p>
+
+        <p>Then there are Bagumbayan or Bagong Bayan (New Town), Buenavista (beautiful view), Maharlika (royalty).</p>
+
+        <p>Others seem almost cryptic. Julugan, in Tanza, might derive from a word meaning “to dangle,” but its etymology remains debated. In Malabon City, Tonsuya is said to come from the phrase “Tonsuy, Ah!” — a local legend involving a Chinese merchant.</p>
+        
+        <p>Tunasan, in Muntinlupa, has multiple origin myths. One claims it was named after a local datu, Tuna Asomal. Another links it to <i>tulisanes</i> — highway bandits — suggesting a past either feared or romanticized.</p>
+
+        <p>These outliers remind us that barangay names don't always follow rules. Some are poetic, others blunt. Some honor ancestors, others commemorate moments. Many remain mysteries. But all of them do what names do best: they locate us — in memory, in place, in story.</p>
+
+        <h3>The place we call home</h3>
+
+        <p>In Mega Manila, barangay names reflect the layered identity of the Philippines: shaped by colonization and geography, steeped in faith, stitched with aspiration and rebellion.</p>
+
+        <p>Some names are repeated across cities. Others are singular, tethered to forgotten legends or living memories.</p>
+
+        <p>But all are part of how the country remembers — not through monuments, but through language embedded in the everyday.</p>
+
+        <p>And if you look closely, your barangay might just tell a story too.</p>
+    
+    
+    </div>
+
+    <div class="content">
+        <p></p>
+    </div>
+
+    <div class="footer">
+        <div class="content">
+            <h2 id="methodology-toggle" style="cursor: pointer; user-select: none;">Methodology</h2>
+            <div id="methodology" style="display: none;">
+                <p>The primary dataset used for this story was obtained from the <a href="https://data.humdata.org/dataset/cod-ab-phl" target="_blank">United Nations Office for the Coordination of Humanitarian Affairs</a> which sourced geographic data from Philippine government agencies: National Mapping and Resource Information Authority and the Philippine Statistics Authority. This dataset includes the names and administrative boundary shapefiles of barangays across the Philippines, which served as the basis for the analysis. </p>
+
+                <p>To analyze patterns in barangay names, a three-stage classification process was conducted. First, barangay names were grouped using a keyword-based approach, identifying common prefixes, suffixes, and root words to group them by themes (e.g., geographic features, people, religious terms). Second, the OpenAI API was used to further classify names that were not captured by the keyword method, particularly those requiring broader semantic interpretation. Lastly, the preliminary classifications were manually reviewed to correct errors, verify ambiguous cases, and ensure cultural and linguistic accuracy. The finalized, manually-reviewed categories from this process were then used in the story.</p>
+
+                <p>The classification themes included religion, geography, historical figures, and indigenous terms, among others. These categories were developed iteratively, informed by patterns that emerged during the keyword-based and model-assisted stages.</p>
+
+                <p>In addition to name classification, a simple spatial analysis was conducted to explore regional patterns in naming conventions. Barangay classifications were joined with shapefile data and mapped using QGIS, which was used to visualize the distribution of name categories across provinces. The maps were then styled and published using Mapbox to support the storytelling and presentation.</p>
+
+                <p>Data cleaning and preparation were performed in Python, using packages such as pandas. All name fields were normalized to ensure consistency during comparison.</p>
+
+                <p>Limitations of this methodology include potential misclassification due to language diversity in the Philippines, regional dialects, and indigenous naming conventions that may not be easily interpreted through keyword, AI-based analysis, or desk research. Barangays that could not be confidently classified were grouped under the category “Others.”</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('methodology-toggle');
+            const content = document.getElementById('methodology');
+
+            toggle.addEventListener('click', () => {
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+            });
+        });
+    </script>
+
+    <div class="content">
+        <div class="credits">
+            <h2>Credits</h2>
+            Reporting by Aika Rey<br>
+            Banner Image by Maverick Asio
+        </div>
+    </div>
+
+
+</body>
+
+</html>
