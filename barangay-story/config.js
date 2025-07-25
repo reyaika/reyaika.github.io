@@ -855,7 +855,7 @@ var config = {
             hidden: false,
             // title: '',
             // image: './assets/buenos-aires.jpg',
-            description: 'A few are rooted in precolonial language or <span class=highlight-other>other</span> categories that defy the mold – names you’ll find only in that exact spot.<br><br> Like Namayan, a village in Muntinlupa City, once part of an ancient kingdom in what is now Metro Manila.',
+            description: 'A few are rooted in precolonial language or <span class=highlight-other>other</span> categories that defy the mold – names you’ll find only in that exact spot.<br><br> Like Namayan, a village in Mandaluyong City, once part of an ancient kingdom in what is now Metro Manila.',
             location: {
                 center: [121.01859, 14.58060],
                 zoom: 15,
